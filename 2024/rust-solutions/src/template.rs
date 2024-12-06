@@ -1,11 +1,11 @@
 use std::fs::File;
 use std::io::{self, prelude::*};
 
-pub fn part_one() {
+pub fn part_one(raw_input: &str) {
     todo!()
 }
 
-pub fn part_one() {
+pub fn part_two(raw_input: &str) {
     todo!()
 }
 
@@ -24,31 +24,28 @@ pub fn get_input() -> io::Result<String> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    const SAMPLE_INPUT: &str = todo!();
 
     #[test]
     fn sample_part_one() {
-        let parsed_input = parse_input(SAMPLE_INPUT);
-        part_one(parsed_input);
+        const SAMPLE_INPUT: &str = todo!();
+        part_one(SAMPLE_INPUT);
     }
 
-    #[test]
-    fn sample_part_two() {
-        let parsed_input = parse_input(SAMPLE_INPUT);
-        part_two(parsed_input);
-    }
+    // #[test]
+    // fn sample_part_two() {
+    //     const SAMPLE_INPUT: &str = todo!();
+    //     part_two(SAMPLE_INPUT);
+    // }
 
-    #[test]
-    fn actual_part_one() {
-        let raw_input = get_input().unwrap();
-        let parsed_input = parse_input(&raw_input);
-        part_one(parsed_input);
-    }
+    // #[test]
+    // fn actual_part_one() {
+    //     let raw_input = get_input().unwrap();
+    //     part_one(raw_input);
+    // }
 
-    #[test]
-    fn actual_part_two() {
-        let raw_input = get_input().unwrap();
-        let parsed_input = parse_input(&raw_input);
-        part_two(parsed_input);
-    }
+    // #[test]
+    // fn actual_part_two() {
+    //     let raw_input = get_input().unwrap();
+    //     part_two(raw_input);
+    // }
 }
