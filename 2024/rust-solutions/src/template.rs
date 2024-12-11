@@ -40,12 +40,12 @@ mod tests {
     // #[test]
     // fn actual_part_one() {
     //     let raw_input = get_input().unwrap();
-    //     part_one(raw_input);
+    //     part_one(&raw_input);
     // }
 
     // #[test]
     // fn actual_part_two() {
     //     let raw_input = get_input().unwrap();
-    //     part_two(raw_input);
+    //     part_two(&raw_input);
     // }
 }
