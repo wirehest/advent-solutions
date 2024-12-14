@@ -1,6 +1,11 @@
 use std::fs::File;
 use std::io::{self, prelude::*};
 
+// pub enum Part {
+//     One,
+//     Two,
+// }
+
 pub fn part_one(raw_input: &str) {
     todo!()
 }
