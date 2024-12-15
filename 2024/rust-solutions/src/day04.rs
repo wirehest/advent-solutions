@@ -1,13 +1,29 @@
-use std::fs::File;
-use std::io::{self, prelude::*};
+// Standard
 
-pub fn part_one(needle: &str, raw_input: &str) -> u32 {
+// Local
+use crate::Part;
+
+// External
+use regex::Regex;
+
+const PUZZLE_INPUT: &str = include_str!("../data/day_04.txt");
+
+pub fn solve(raw_input: &str, part: &Part) -> i64 {
     let parsed = parse_input(raw_input);
+
+    match part {
+        Part::One => part_one(&parsed),
+        Part::Two => part_two(&parsed),
+    }
+}
+
+pub fn part_one(parsed: &[Vec<char>]) -> i64 {
+    let needle = "XMAS";
     let needle_rev: String = needle.chars().rev().collect();
 
-    let rows = to_rows(&parsed);
-    let columns = to_columns(&parsed);
-    let diagonals = to_diagonals(&parsed);
+    let rows = to_rows(parsed);
+    let columns = to_columns(parsed);
+    let diagonals = to_diagonals(parsed);
 
     let appearances = [rows, columns, diagonals]
         .iter()
@@ -15,16 +31,11 @@ pub fn part_one(needle: &str, raw_input: &str) -> u32 {
             direction
                 .iter()
                 .map(|line| line.matches(needle).count() + line.matches(&needle_rev).count())
-                .sum::<usize>() as u32
+                .sum::<usize>() as i64
         })
         .sum();
 
-    println!("appearances: {}", appearances);
     appearances
-}
-
-pub fn part_two() {
-    todo!()
 }
 
 fn to_rows(parsed: &[Vec<char>]) -> Vec<String> {
@@ -109,19 +120,35 @@ fn to_diagonals(parsed: &[Vec<char>]) -> Vec<String> {
     diagonals
 }
 
+pub fn part_two(parsed: &[Vec<char>]) -> i64 {
+    let height = parsed.len();
+    let width = parsed[0].len();
+    assert!(height > 1 && width > 1);
+
+    let mut count = 0;
+    let re = Regex::new(r"M.M.A.S.S|S.S.A.M.M|S.M.A.S.M|M.S.A.M.S").unwrap();
+
+    for y in 1..height - 1 {
+        for x in 1..width - 1 {
+            let top: String = parsed[y - 1][x - 1..=x + 1].iter().collect();
+            let mid: String = parsed[y][x - 1..=x + 1].iter().collect();
+            let bot: String = parsed[y + 1][x - 1..=x + 1].iter().collect();
+            let window = format!("{top}{mid}{bot}");
+
+            if re.is_match(&window) {
+                count += 1;
+            }
+        }
+    }
+
+    count
+}
+
 pub fn parse_input(raw_input: &str) -> Vec<Vec<char>> {
     raw_input
-        .trim()
         .lines()
         .map(|row| row.chars().collect::<Vec<char>>())
         .collect()
-}
-
-pub fn get_input() -> io::Result<String> {
-    let mut file = File::open("data/day04.txt")?;
-    let mut raw_input = String::new();
-    file.read_to_string(&mut raw_input)?;
-    Ok(raw_input)
 }
 
 #[cfg(test)]
@@ -129,9 +156,8 @@ mod tests {
     use super::*;
 
     #[test]
-    fn sample_part_one() {
-        const SAMPLE_INPUT: &str = "
-MMMSXXMASM
+    fn part1_sample() {
+        const SAMPLE_INPUT: &str = "MMMSXXMASM
 MSAMXMSMSA
 AMXSXMAAMM
 MSAMASMSMX
@@ -141,27 +167,39 @@ SMSMSASXSS
 SAXAMASAAA
 MAMMMXMMMM
 MXMXAXMASX";
-        let needle = "XMAS";
-        assert_eq!(18, part_one(needle, SAMPLE_INPUT));
+        let solved = solve(SAMPLE_INPUT, &Part::One);
+        println!("solution: {:?}", solved);
+        assert_eq!(18, solved);
     }
-
-    // #[test]
-    // fn sample_part_two() {
-    //     let parsed_input = parse_input(SAMPLE_INPUT);
-    //     part_two(parsed_input);
-    // }
 
     #[test]
-    fn actual_part_one() {
-        let needle = "XMAS";
-        let raw_input = get_input().unwrap();
-        part_one(needle, &raw_input);
+    fn part2_sample() {
+        const SAMPLE_INPUT: &str = ".M.S......
+..A..MSMS.
+.M.S.MAA..
+..A.ASMSM.
+.M.S.M....
+..........
+S.S.S.S.S.
+.A.A.A.A..
+M.M.M.M.M.
+..........";
+        let solved = solve(SAMPLE_INPUT, &Part::Two);
+        println!("solution: {:?}", solved);
+        assert_eq!(9, solved);
     }
 
-    // #[test]
-    // fn actual_part_two() {
-    //     let raw_input = get_input().unwrap();
-    //     let parsed_input = parse_input(&raw_input);
-    //     part_two(parsed_input);
-    // }
+    #[test]
+    fn part1_actual() {
+        let solved = solve(PUZZLE_INPUT, &Part::One);
+        println!("solution: {:?}", solved);
+        assert_eq!(2662, solved);
+    }
+
+    #[test]
+    fn part2_actual() {
+        let solved = solve(PUZZLE_INPUT, &Part::Two);
+        println!("solution: {:?}", solved);
+        assert_eq!(2034, solved);
+    }
 }
