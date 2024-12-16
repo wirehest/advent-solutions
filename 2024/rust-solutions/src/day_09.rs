@@ -77,7 +77,7 @@ fn make_string<T: Display>(files: &[Option<T>]) -> String {
 }
 
 fn get_input() -> io::Result<String> {
-    let mut file = File::open("data/day09.txt")?;
+    let mut file = File::open("data/day_09.txt")?;
     let mut raw_input = String::new();
     file.read_to_string(&mut raw_input)?;
 

@@ -83,7 +83,7 @@ pub fn parse_input(raw_input: &str) -> Vec<Vec<i32>> {
 }
 
 pub fn reader() -> io::Result<String> {
-    let mut file = File::open("data/day02.txt")?;
+    let mut file = File::open("data/day_02.txt")?;
     let mut raw_input = String::new();
     file.read_to_string(&mut raw_input)?;
 

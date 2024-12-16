@@ -5,7 +5,7 @@ use crate::Part;
 // External
 use regex::Regex;
 
-const PUZZLE_INPUT: &str = "data/day13.txt";
+const PUZZLE_INPUT: &str = "data/day_13.txt";
 
 pub fn tokens_spent(raw_input: &str, part: Part) -> i64 {
     let parsed = parse_input(raw_input);

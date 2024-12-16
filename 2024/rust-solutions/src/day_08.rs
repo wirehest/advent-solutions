@@ -8,7 +8,7 @@ use crate::Part;
 // External
 use itertools::Itertools;
 
-const PUZZLE_INPUT: &str = "data/day08.txt";
+const PUZZLE_INPUT: &str = "data/day_08.txt";
 
 type Antennas = HashMap<Frequency, Vec<Node>>;
 type Map = Vec<Vec<char>>;

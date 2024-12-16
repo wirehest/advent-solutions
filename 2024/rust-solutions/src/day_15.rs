@@ -150,7 +150,7 @@ impl Warehouse {
     }
 }
 
-const PUZZLE_INPUT: &str = "data/day15.txt";
+const PUZZLE_INPUT: &str = "data/day_15.txt";
 
 fn solve(raw_input: &str, part: Part) -> usize {
     let (map, moves) = parse(raw_input);

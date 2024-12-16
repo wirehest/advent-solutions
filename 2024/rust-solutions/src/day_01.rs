@@ -40,7 +40,7 @@ pub fn part_two(first_list: Vec<String>, second_list: Vec<String>) -> u32 {
 }
 
 pub fn reader() -> io::Result<(Vec<String>, Vec<String>)> {
-    let file = File::open("data/day01.txt")?;
+    let file = File::open("data/day_01.txt")?;
     let reader = io::BufReader::new(file);
     let mut first_list = Vec::new();
     let mut second_list = Vec::new();

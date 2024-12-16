@@ -1,29 +1,18 @@
-use std::fs::File;
-use std::io::{self, prelude::*};
+// Standard
 
-// pub enum Part {
-//     One,
-//     Two,
-// }
+// Local
+use crate::Part;
 
-pub fn part_one(raw_input: &str) {
+// External
+
+// const PUZZLE_INPUT: &str = include_str!("../data/day_XX.txt");
+
+pub fn solve(raw_input: &str, part: &Part) {
     todo!()
 }
 
-pub fn part_two(raw_input: &str) {
+pub fn parse(raw_input: &str) {
     todo!()
-}
-
-pub fn parse_input(raw_input: &str) {
-    todo!()
-}
-
-pub fn get_input() -> io::Result<String> {
-    let mut file = File::open(todo!("add path to input"))?;
-    let mut raw_input = String::new();
-    file.read_to_string(&mut raw_input)?;
-
-    Ok(raw_input)
 }
 
 #[cfg(test)]
@@ -31,26 +20,32 @@ mod tests {
     use super::*;
 
     #[test]
-    fn sample_part_one() {
+    fn part1_sample() {
         const SAMPLE_INPUT: &str = todo!();
-        part_one(SAMPLE_INPUT);
+        let solved = solve(SAMPLE_INPUT, &Part::One);
+        println!("solution: {:?}", solved);
+        assert_eq!((), solved);
     }
 
     // #[test]
-    // fn sample_part_two() {
+    // fn part2_sample() {
     //     const SAMPLE_INPUT: &str = todo!();
-    //     part_two(SAMPLE_INPUT);
+    //     let solved = solve(SAMPLE_INPUT, &Part::Two);
+    //     println!("solution: {:?}", solved);
+    //     assert_eq!((), solved);
     // }
 
     // #[test]
-    // fn actual_part_one() {
-    //     let raw_input = get_input().unwrap();
-    //     part_one(&raw_input);
+    // fn part1_actual() {
+    //     let solved = solve(PUZZLE_INPUT, &Part::One);
+    //     println!("solution: {:?}", solved);
+    //     assert_eq!((), solved);
     // }
 
     // #[test]
-    // fn actual_part_two() {
-    //     let raw_input = get_input().unwrap();
-    //     part_two(&raw_input);
+    // fn part2_actual() {
+    //     let solved = solve(PUZZLE_INPUT, &Part::Two);
+    //     println!("solution: {:?}", solved);
+    //     assert_eq!((), solved);
     // }
 }
